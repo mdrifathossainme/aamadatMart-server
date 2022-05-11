@@ -17,7 +17,7 @@ const run= async()=>{
     try{
         await client.connect();
         const homeProductCollection = client.db("Products").collection("homepage");
-        const AllproductCollection = client.db("Products").collection("allProducts")
+        const allproductCollection = client.db("Products").collection("allProducts")
 
 
         app.get('/homepage', async(req,res)=>{
@@ -26,6 +26,14 @@ const run= async()=>{
             const result= await cursor.toArray()
             res.send(result)
         })
+        app.get('/products', async(req,res)=>{
+          const qurary={};
+          const cursor= allproductCollection.find(qurary);
+          const result= await cursor.toArray()
+          res.send(result)
+        })
+
+
     }
     finally{
 
